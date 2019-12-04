@@ -14,10 +14,10 @@
     <br />
     <hr />
     <br />
-        <h6 class="text-center font-weight-bold">Ingrese el codigo para empezar</h6>
-    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control w-25 m-auto"></asp:TextBox>
+        <h6 class="text-center font-weight-bold" style="font-size:20px;">Ingrese el codigo para empezar</h6>
+    <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control w-25 m-auto" style="min-width:400px;"></asp:TextBox>
         <br />
-        <asp:Button ID="btnProbar" runat="server" Text="Probar Suerte!" CssClass="btn btn-primary d-block" style="width:25%; margin:auto;"/>
+        <asp:Button ID="btnProbar" runat="server" Text="Probar Suerte!" CssClass="btn btn-primary d-block" style="width:25%; min-width:400px; margin:auto;"/>
 
 
 
