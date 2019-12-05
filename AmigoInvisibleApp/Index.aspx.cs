@@ -13,5 +13,29 @@ namespace AmigoInvisibleApp
         {
 
         }
+
+        protected void btnProbar_Click(object sender, EventArgs e)
+        {
+            if(txtCodigo.Text != "")
+            {
+                string codigo = txtCodigo.Text;
+                if(codigo == "123")
+                {
+                    lblDialogo.CssClass = "text-success";
+                    lblDialogo.Text = "Me descubriste!";
+                    Response.Redirect("Success.aspx");
+                }
+                else
+                {
+                    lblDialogo.CssClass = "text-danger";
+                    lblDialogo.Text = "Codigo invalido :c";
+                }
+            }
+            else
+            {
+                lblDialogo.CssClass = "text-primary";
+                lblDialogo.Text = "Debes ingresar el codigo secreto para empezar :D";
+            }
+        }
     }
 }
