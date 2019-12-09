@@ -40,13 +40,13 @@ namespace AmigoInvisibleApp {
         protected global::System.Web.UI.WebControls.TextBox txtNombre;
         
         /// <summary>
-        /// btnProbar control.
+        /// btnEnviarNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProbar;
+        protected global::System.Web.UI.WebControls.Button btnEnviarNombre;
         
         /// <summary>
         /// gvPistas control.
@@ -65,5 +65,23 @@ namespace AmigoInvisibleApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPista;
+        
+        /// <summary>
+        /// txtPregunta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPregunta;
+        
+        /// <summary>
+        /// btnEnviarPregunta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEnviarPregunta;
     }
 }
