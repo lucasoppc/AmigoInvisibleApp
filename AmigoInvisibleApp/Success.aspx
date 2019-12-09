@@ -15,14 +15,33 @@
         <div id="presentacion" style="width:30%; min-width:100px; float:left; height:300px; margin-left:50px; margin-top:60px;">
             <p style="font-size:24px; margin-top:25px;">Bienvenido, ya estas mas cerca de descubrirme. 
                 En esta pagina vas a interactuar para conseguir mas pistas. Suerte!</p>
+
         </div>
 
-        <div id="unknown" style="display:inline; float:right; margin-top:90px;">
+        <div id="unknown" style="display:inline; float:right; margin-top:90px; position:sticky;">
             <asp:Image ID="unknownimg" runat="server" Height="250px" style="float:right; margin-right:100px;" ImageAlign="Right" ImageUrl="~/images/persona-invisible-de-ropa.png" Width="200px"  />
         </div>
         
 
         <br style="clear:both;" />
+        <hr />
+
+        <div id="pistas">
+
+        <asp:GridView ID="gvPistas" runat="server" CssClass="d-inline table table-striped table-borderless" Style="" Height="100px" width="50%" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField HeaderText="Fecha" DataFormatString="d:0" />
+                        <asp:ButtonField ButtonType="Button" Text="Ver">
+                        <ControlStyle CssClass="btn btn-primary" />
+                        </asp:ButtonField>
+                    </Columns>
+                </asp:GridView>
+
+        <asp:TextBox ID="txtPista" runat="server" Width="40%" Height="200px" Style="margin-right:50px" CssClass=" d-inline d-flex form-control input-group-text" ReadOnly="True" TextMode="MultiLine"></asp:TextBox>
+
+        </div>
+
+
 
 
 
