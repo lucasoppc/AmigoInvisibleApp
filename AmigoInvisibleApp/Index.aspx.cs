@@ -30,6 +30,7 @@ namespace AmigoInvisibleApp
         {
             if(txtCodigo.Text != "")
             {
+                lblDialogo.Text = "";
                 string codigo = txtCodigo.Text;
                 try
                 {

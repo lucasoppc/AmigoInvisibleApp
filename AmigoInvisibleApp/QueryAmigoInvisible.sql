@@ -58,7 +58,7 @@ go
 --prodecimientos almacenados
 
 --agregar pregunta
-create proc agregarpregunta @fecha datetime, @texto varchar as
+create proc agregarpregunta @fecha datetime, @texto varchar(500) as
 begin
 	begin tran
 		insert into preguntas (fecha,texto) values(@fecha,@texto)

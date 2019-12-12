@@ -43,7 +43,7 @@
 
         <asp:TextBox ID="txtNombre" CssClass="form-control input-group float-left d-inline" width="60%" Style="" placeholder="Quien soy?" runat="server" ToolTip="Solo tenes 1 intento por dia"></asp:TextBox>
 
-        <asp:Button ID="btnEnviarNombre" CssClass="btn btn-outline-primary d-inline" Width="40%" runat="server" Text="Enviar" />
+        <asp:Button ID="btnEnviarNombre" CssClass="btn btn-outline-primary d-inline" Width="40%" runat="server" Text="Enviar" OnClick="btnEnviarNombre_Click" />
 
         </div>
 
@@ -61,11 +61,13 @@
         </div>
 
 
-<div id="preguntas" style="opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 65px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;">
+<div id="preguntas" style="opacity: 0.9; z-index: 2147483647; position: fixed; left: 0px; bottom: 0px; height: 80px; right: 0px; display: block; width: 100%; background-color: #202020; margin: 0px; padding: 0px;">
 
-       <asp:TextBox ID="txtPregunta" placeholder="Haceme una pregunta!" CssClass="form-control input-group float-left d-inline" Height="45px" width="60%" Style="margin-top:10px"  runat="server"></asp:TextBox>
+       <asp:TextBox ID="txtPregunta" placeholder="Haceme una pregunta!" CssClass="form-control input-group float-left d-inline" Height="50px" width="60%" Style="margin-top:10px"  runat="server"></asp:TextBox>
 
-        <asp:Button ID="btnEnviarPregunta" placeholder="Enviar una pregunta"  CssClass="btn btn-primary d-inline" Height="45px" Width="40%" runat="server" Style="margin-top:10px" Text="Enviar" />
+        <asp:Button ID="btnEnviarPregunta" placeholder="Enviar una pregunta"  CssClass="btn btn-primary d-inline" Height="45px" Width="40%" runat="server" Style="margin-top:10px" Text="Enviar" OnClick="btnEnviarPregunta_Click" />
+
+    <asp:Label ID="lblDialogo" runat="server" Font-Names="Arial" ForeColor="White"></asp:Label>
 
 
 </div>

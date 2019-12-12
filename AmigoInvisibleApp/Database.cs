@@ -119,6 +119,41 @@ namespace AmigoInvisibleApp
             }
             return listaPistas;
         }
+
+        public static void enviarPregunta(Pista pista)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("agregarpregunta", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter retorno = new SqlParameter("retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+            cmd.Parameters.AddWithValue("fecha", pista.Fecha);
+            cmd.Parameters.AddWithValue("texto", pista.Texto);
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == 1)
+                {
+                    throw new Exception("Pregunta enviada");
+                }
+                else if ((int)retorno.Value == 0)
+                {
+                    throw new Exception("ocurrio algun error super raro");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
       
 
         
