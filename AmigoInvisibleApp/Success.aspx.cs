@@ -11,7 +11,8 @@ namespace AmigoInvisibleApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            gvPistas.DataSource =Database.listarPistas();
+            gvPistas.DataBind();
         }
     }
 }

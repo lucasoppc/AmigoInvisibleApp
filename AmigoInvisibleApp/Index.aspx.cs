@@ -31,7 +31,11 @@ namespace AmigoInvisibleApp
             if(txtCodigo.Text != "")
             {
                 string codigo = txtCodigo.Text;
-                if(codigo == "123")
+                try
+                {
+
+                
+                if((bool)Database.verificarNombre(codigo) == true)
                 {
                     lblDialogo.CssClass = "text-success";
                     lblDialogo.Text = "Me descubriste!";
@@ -41,6 +45,11 @@ namespace AmigoInvisibleApp
                 {
                     lblDialogo.CssClass = "text-danger";
                     lblDialogo.Text = "Codigo invalido :c";
+                }
+                }
+                catch(Exception ex)
+                {
+                    lblDialogo.Text = ex.Message;
                 }
             }
             else

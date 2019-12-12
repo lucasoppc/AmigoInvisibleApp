@@ -47,6 +47,78 @@ namespace AmigoInvisibleApp
             }
         }
 
+        public static bool verificarNombre(string nombre)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("verificarnombre", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter retorno = new SqlParameter("retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.AddWithValue("nombre", nombre);
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+
+                if ((int)retorno.Value == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+            catch(Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static List<Pista> listarPistas()
+        {
+            List<Pista> listaPistas = new List<Pista>();
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("obtenerpistas", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader;
+
+            try
+            {
+                cn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DateTime fecha = (DateTime)reader["fecha"];
+                        string texto = (string)reader["texto"];
+                        Pista unaPista = new Pista(fecha, texto);
+                        listaPistas.Add(unaPista);
+                    }
+                    reader.Close();
+
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return listaPistas;
+        }
       
 
         

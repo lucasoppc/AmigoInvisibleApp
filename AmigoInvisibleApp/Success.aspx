@@ -11,6 +11,12 @@
             display: inline;
             text-align: left;
         }
+        .auto-style2 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -43,18 +49,14 @@
 
         <hr />
 
-        <div id="pistas">
-<h3 class="display-4">Pistas:</h3>
-        <asp:GridView ID="gvPistas" runat="server" CssClass="d-inline table table-striped table-borderless" Style="" Height="100px" width="50%" AutoGenerateColumns="False">
+        <div id="pistas" style="width:100%;">
+<h3 class="auto-style2">PISTAS:</h3>
+        <asp:GridView ID="gvPistas" runat="server" CssClass=" table table-borderless" Style="" Height="100px" width="100%" AutoGenerateColumns="False">
                     <Columns>
-                        <asp:BoundField HeaderText="Fecha" DataFormatString="d:0" />
-                        <asp:ButtonField ButtonType="Button" Text="Ver">
-                        <ControlStyle CssClass="btn btn-primary" />
-                        </asp:ButtonField>
+                        <asp:BoundField HeaderText="Fecha" DataFormatString="{0:d}" DataField="Fecha" />
+                        <asp:BoundField DataField="Texto" HeaderText="Descripcion" />
                     </Columns>
                 </asp:GridView>
-
-        <asp:TextBox ID="txtPista" runat="server" Width="40%" Height="200px" Style="margin-right:50px" CssClass=" d-inline d-flex form-control input-group-text" ReadOnly="True" TextMode="MultiLine"></asp:TextBox>
 
         </div>
 
