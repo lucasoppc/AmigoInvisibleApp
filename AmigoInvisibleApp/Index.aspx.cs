@@ -11,7 +11,19 @@ namespace AmigoInvisibleApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                if ((bool)Database.verificarcodigo() == true)
+                {
+                    lblDialogo.Text = "true";
+                    Response.Redirect("Success.aspx");
+                }
+            }
+            catch(Exception ex)
+            {
+                lblDialogo.Text = ex.Message;
+            }
+            
         }
 
         protected void btnProbar_Click(object sender, EventArgs e)

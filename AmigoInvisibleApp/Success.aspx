@@ -9,7 +9,7 @@
     <style type="text/css">
         .auto-style1 {
             display: inline;
-            text-align: right;
+            text-align: left;
         }
     </style>
 </head>
