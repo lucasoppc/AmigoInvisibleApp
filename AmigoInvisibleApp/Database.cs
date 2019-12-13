@@ -120,6 +120,43 @@ namespace AmigoInvisibleApp
             return listaPistas;
         }
 
+        public static List<Pista> listarPreguntas()
+        {
+            List<Pista> listaPistas = new List<Pista>();
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("verpreguntas", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader;
+
+            try
+            {
+                cn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        DateTime fecha = (DateTime)reader["fecha"];
+                        string texto = (string)reader["texto"];
+                        Pista unaPista = new Pista(fecha, texto);
+                        listaPistas.Add(unaPista);
+                    }
+                    reader.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return listaPistas;
+        }
+
         public static void enviarPregunta(Pista pista)
         {
             SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
@@ -154,6 +191,41 @@ namespace AmigoInvisibleApp
                 cn.Close();
             }
         }
+
+        public static void enviarPista(Pista pista)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("agregarpista", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter retorno = new SqlParameter("retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+            cmd.Parameters.AddWithValue("texto", pista.Texto);
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == 1)
+                {
+                    throw new Exception("Pista enviada");
+                }
+                else if ((int)retorno.Value == 0)
+                {
+                    throw new Exception("ocurrio algun error super raro");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
 
         public static bool enviarNombre(string nombre)
         {
@@ -298,6 +370,48 @@ namespace AmigoInvisibleApp
                 cn.Close();
             }
 
+        }
+
+        public static void activarCodigo()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("codigoactivado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static void desactivarCodigo()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("codigodesactivado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
 

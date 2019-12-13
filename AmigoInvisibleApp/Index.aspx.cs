@@ -18,6 +18,8 @@ namespace AmigoInvisibleApp
                     lblDialogo.Text = "true";
                     Response.Redirect("Success.aspx");
                 }
+                gvPistas.DataSource = Database.listarPistas();
+                gvPistas.DataBind();
             }
             catch(Exception ex)
             {
@@ -34,19 +36,18 @@ namespace AmigoInvisibleApp
                 string codigo = txtCodigo.Text;
                 try
                 {
-
-                
-                if((bool)Database.verificarNombre(codigo) == true)
-                {
-                    lblDialogo.CssClass = "text-success";
-                    lblDialogo.Text = "Me descubriste!";
-                    Response.Redirect("Success.aspx");
-                }
-                else
-                {
-                    lblDialogo.CssClass = "text-danger";
-                    lblDialogo.Text = "Codigo invalido :c";
-                }
+                    if (codigo.Trim().ToUpper() == "DATOS MAESTROS") 
+                    {
+                        Database.activarCodigo();
+                        lblDialogo.CssClass = "text-success";
+                        lblDialogo.Text = "Me descubriste!";
+                        Response.Redirect("Success.aspx");
+                    }
+                    else
+                    {
+                        lblDialogo.CssClass = "text-danger";
+                        lblDialogo.Text = "Codigo invalido :c";
+                    }
                 }
                 catch(Exception ex)
                 {

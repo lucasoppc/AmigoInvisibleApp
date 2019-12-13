@@ -30,7 +30,7 @@ namespace AmigoInvisibleApp
         protected void btnEnviarNombre_Click(object sender, EventArgs e)
         {
             lblDialogo.Text = "";
-            string nombre = txtNombre.Text.Trim();
+            string nombre = txtNombre.Text.Trim().ToUpper();
 
             if (txtNombre.Text != "")
             {

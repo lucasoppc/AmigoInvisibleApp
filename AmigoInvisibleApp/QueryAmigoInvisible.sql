@@ -54,7 +54,7 @@ create table gano
 
 insert into codigo (codigo) values(0)
 go
-insert into nombre (nombre) values( 'Lucas Hernandez')
+insert into nombre (nombre) values( 'LUCAS HERNANDEZ')
 go
 insert into ultimointento (fecha) values(GETDATE()-1)
 go
@@ -92,7 +92,19 @@ go
 --agregar pistas
 create proc agregarpista @texto varchar(5000) as
 begin
-	insert into pistas (fecha,texto) values(getdate(),@texto)
+	begin tran
+		insert into pistas (fecha,texto) values(getdate(),@texto)
+	if(@@error = 0)
+	begin
+		commit tran
+		return 1
+	end
+	else
+	begin
+	 rollback tran
+	 return 0
+	end
+	
 end
 go
 

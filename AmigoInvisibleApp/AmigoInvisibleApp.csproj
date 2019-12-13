@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="controlpanel.aspx" />
     <Content Include="Ganaste.aspx" />
     <Content Include="images\persona-invisible-de-ropa.png" />
     <Content Include="Index.aspx" />
@@ -76,6 +77,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="controlpanel.aspx.cs">
+      <DependentUpon>controlpanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="controlpanel.aspx.designer.cs">
+      <DependentUpon>controlpanel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="Ganaste.aspx.cs">
       <DependentUpon>Ganaste.aspx</DependentUpon>

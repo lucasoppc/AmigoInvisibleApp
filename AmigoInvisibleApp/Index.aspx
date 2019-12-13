@@ -23,6 +23,17 @@
 
             <asp:Label ID="lblDialogo" runat="server" Text="" style="display:block; text-align:center;"></asp:Label>
 
+            <div id="pistas" style="width:100%;">
+<h3 class="auto-style2">PISTAS:</h3>
+        <asp:GridView ID="gvPistas" runat="server" CssClass=" table table-borderless" Style="" Height="100px" width="100%" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField HeaderText="Fecha" DataFormatString="{0:d}" DataField="Fecha" />
+                        <asp:BoundField DataField="Texto" HeaderText="Descripcion" />
+                    </Columns>
+                </asp:GridView>
+
+        </div>
+
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
