@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ganaste.aspx" />
     <Content Include="images\persona-invisible-de-ropa.png" />
     <Content Include="Index.aspx" />
     <Content Include="QueryAmigoInvisible.sql" />
@@ -76,6 +77,13 @@
   <ItemGroup>
     <Compile Include="Conexion.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Ganaste.aspx.cs">
+      <DependentUpon>Ganaste.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ganaste.aspx.designer.cs">
+      <DependentUpon>Ganaste.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -154,8 +154,155 @@ namespace AmigoInvisibleApp
                 cn.Close();
             }
         }
-      
 
-        
+        public static bool enviarNombre(string nombre)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("verificarnombre", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter retorno = new SqlParameter("retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+            cmd.Parameters.AddWithValue("nombre", nombre);
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                if ((int)retorno.Value == 1)
+                {
+                    return true;
+                }
+                else if ((int)retorno.Value == 0)
+                {
+                    throw new Exception("No soy ese, perdiste tu intento :c");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return false;
+        }
+
+        public static void agregarIntento()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("agregarIntento", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static void obtenerUltimoIntento()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("obtenerultimointento", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader;
+
+            try
+            {
+                cn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+
+                    DateTime ultimoIntento = (DateTime)reader["fecha"];
+                    if (ultimoIntento.Day == DateTime.Now.Day)
+                    {
+                        throw new Exception("Ya lo has intentado hoy, proba manana!!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static void ganado()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("ganar", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public static bool verificarganado()
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("verificarganado", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter retorno = new SqlParameter("retorno", SqlDbType.Int);
+            retorno.Direction = ParameterDirection.ReturnValue;
+            cmd.Parameters.Add(retorno);
+
+            try
+            {
+                cn.Open();
+                cmd.ExecuteNonQuery();
+
+                if ((int)retorno.Value == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+        }
+
+
+
+
+
     }
 }

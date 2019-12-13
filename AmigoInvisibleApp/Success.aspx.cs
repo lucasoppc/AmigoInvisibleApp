@@ -11,13 +11,57 @@ namespace AmigoInvisibleApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            gvPistas.DataSource =Database.listarPistas();
-            gvPistas.DataBind();
+            try
+            { 
+                if ((bool)Database.verificarganado() == true)
+                {
+                    Response.Redirect("Ganaste.aspx");
+                }
+                gvPistas.DataSource = Database.listarPistas();
+                gvPistas.DataBind();
+            }
+            catch(Exception ex)
+            {
+                lblDialogo.Text = ex.Message;
+            }
+            
         }
 
         protected void btnEnviarNombre_Click(object sender, EventArgs e)
         {
+            lblDialogo.Text = "";
+            string nombre = txtNombre.Text.Trim();
 
+            if (txtNombre.Text != "")
+            {
+                try
+                {
+                    Database.obtenerUltimoIntento();
+                    if ((bool)Database.enviarNombre(nombre) == true)
+                    {
+                        Database.ganado();
+                        Response.Redirect("Ganaste.aspx");
+                    }
+                }
+                catch(Exception ex)
+                {
+                    lblDialogo.Text = ex.Message;
+                }
+                try
+                {
+                    Database.agregarIntento();
+                }
+                catch(Exception ex)
+                {
+                    lblDialogo.Text = ex.Message;
+                }
+
+            }
+            else
+            {
+                lblDialogo.Text = "Ponele un nombree";
+            }
+            
         }
 
         protected void btnEnviarPregunta_Click(object sender, EventArgs e)

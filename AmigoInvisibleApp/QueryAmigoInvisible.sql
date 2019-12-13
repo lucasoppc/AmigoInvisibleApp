@@ -45,6 +45,11 @@ create table intentos
 )
 go
 
+create table gano
+(
+	 gano bit not null
+)
+
 --ingreso de datos
 
 insert into codigo (codigo) values(0)
@@ -52,6 +57,8 @@ go
 insert into nombre (nombre) values( 'Lucas Hernandez')
 go
 insert into ultimointento (fecha) values(GETDATE()-1)
+go
+insert into gano (gano) values(0)
 go
 
 
@@ -140,6 +147,36 @@ begin
 end
 go
 
+create proc agregarIntento as
+begin
+	update ultimointento set fecha=getdate()
+end
+go
 
 
+
+create proc obtenerultimointento as
+begin
+	select fecha from ultimointento
+end
+go
+
+create proc ganar as
+begin
+	update gano set gano=1
+end
+go
+
+create proc verificarganado as
+begin
+	if exists(select gano from gano where gano=1)
+	begin
+		return 1
+	end
+	else
+	begin
+		return 0
+	end
+end
+go
 
